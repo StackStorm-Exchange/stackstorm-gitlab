@@ -92,4 +92,9 @@ class GitlabPipelineAPI(GitlabRestClient):
             for k, v in variables.iteritems():
                 p.update({"variables[{}]".format(k): v})
 
-        return self._post(url, real_endpoint, token=self.token, headers=self._headers, params=p, **kwargs)
+        return self._post(url,
+                          real_endpoint,
+                          token=self.token,
+                          headers=self._headers,
+                          params=p,
+                          **kwargs)
