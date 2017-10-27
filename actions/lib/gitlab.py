@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from st2actions.runners.pythonrunner import Action
+from st2common.runners.base_action import Action
 import requests
 from urllib import quote_plus
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
