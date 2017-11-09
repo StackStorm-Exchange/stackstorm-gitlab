@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-from st2common.runners.base_action import Action
-import requests
 from urllib import quote_plus
+import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from st2common.runners.base_action import Action
 
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning) # pylint: disable=no-member
 
 
 def override_token(func):
