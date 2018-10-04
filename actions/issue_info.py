@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from lib.gitlab import GitlabProjectsAPI
+from lib.gitlab import GitlabIssuesAPI
 
 class GitlabIssue(GitlabIssuesAPI):
 
