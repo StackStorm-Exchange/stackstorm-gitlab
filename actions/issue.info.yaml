@@ -1,0 +1,26 @@
+---
+
+name: issue.info
+description: "Get issue metadata"
+
+runner_type: python-script
+entry_point: issue_info.py
+
+parameters:
+  url:
+    type: string
+    description: Override the configured base url for gitlab
+  project:
+    type: string
+    required: true
+    description: the 'path_with_namespace' for the project that the issue lives in (group/group/project)
+  issue_iid:
+    type: string
+    required: true
+    description: the iid of the issue in the project (not global unique id) of the issue
+  token:
+    type: string
+    description: Override the configured token for the gitlab api
+  verify_ssl:
+    type: boolean
+    default: False

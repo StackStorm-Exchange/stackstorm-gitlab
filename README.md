@@ -16,6 +16,10 @@ verify_ssl: False
 
 * `project.info` - Returns project information
 
+### Issues
+
+* `issue.info` - Returns issue information
+
 ### Pipelines
 
 * `pipeline.list` - List all pipelines in a project
