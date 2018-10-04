@@ -75,7 +75,7 @@ class GitlabProjectsAPI(GitlabRestClient):
 
 class GitlabIssuesAPI(GitlabRestClient):
     def __init__(self, config):
-        super(GitlabProjectsAPI, self).__init__(config=config)
+        super(GitlabIssuesAPI, self).__init__(config=config)
         self._api_endpoint = 'projects'
         self._api_sub_endpoint = 'issues'
 
