@@ -73,6 +73,16 @@ class GitlabProjectsAPI(GitlabRestClient):
         real_endpoint = "{0}/{1}".format(self._api_endpoint, quote_plus(endpoint))
         return self._get(url, real_endpoint, token=self.token, headers=self._headers, **kwargs)
 
+class GitlabIssuesAPI(GitlabRestClient):
+    def __init__(self, config):
+        super(GitlabProjectsAPI, self).__init__(config=config)
+        self._api_endpoint = 'projects'
+        self._api_sub_endpoint = 'issues'
+
+    def get(self, url, endpoint, issue_id, **kwargs):
+        real_endpoint = "{0}/{1}/{2}/{3}".format(self._api_endpoint, quote_plus(endpoint), self._api_sub_endpoint, issue_id)
+        return self._get(url, real_endpoint, token=self.token, headers=self._headers, **kwargs)
+
 
 class GitlabPipelineAPI(GitlabRestClient):
     def __init__(self, config):
@@ -98,3 +108,4 @@ class GitlabPipelineAPI(GitlabRestClient):
                           headers=self._headers,
                           params=p,
                           **kwargs)
+
