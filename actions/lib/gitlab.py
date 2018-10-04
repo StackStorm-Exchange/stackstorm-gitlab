@@ -5,7 +5,8 @@ import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from st2common.runners.base_action import Action
 
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)  # pylint: disable=no-member
+requests.packages.urllib3.disable_warnings(
+    InsecureRequestWarning)  # pylint: disable=no-member
 
 
 def override_token(func):
@@ -18,6 +19,7 @@ def override_token(func):
 
 
 class RequestsMethod(object):
+
     @staticmethod
     def method(method, url, verify_ssl=False, headers=None, params=None):
         methods = {'get': requests.get,
@@ -27,7 +29,8 @@ class RequestsMethod(object):
             params = dict()
 
         requests_method = methods.get(method)
-        response = requests_method(url, headers=headers, params=params, verify=verify_ssl)
+        response = requests_method(
+            url, headers=headers, params=params, verify=verify_ssl)
 
         if response.status_code:
             return response.json()
@@ -36,6 +39,7 @@ class RequestsMethod(object):
 
 
 class GitlabRestClient(Action):
+
     def __init__(self, config):
         super(GitlabRestClient, self).__init__(config=config)
         self._api_ext = 'api/v4'
@@ -65,36 +69,44 @@ class GitlabRestClient(Action):
 
 
 class GitlabProjectsAPI(GitlabRestClient):
+
     def __init__(self, config):
         super(GitlabProjectsAPI, self).__init__(config=config)
         self._api_endpoint = 'projects'
 
     def get(self, url, endpoint, **kwargs):
-        real_endpoint = "{0}/{1}".format(self._api_endpoint, quote_plus(endpoint))
+        real_endpoint = "{0}/{1}".format(self._api_endpoint,
+                                         quote_plus(endpoint))
         return self._get(url, real_endpoint, token=self.token, headers=self._headers, **kwargs)
 
+
 class GitlabIssuesAPI(GitlabRestClient):
+
     def __init__(self, config):
         super(GitlabIssuesAPI, self).__init__(config=config)
         self._api_endpoint = 'projects'
         self._api_sub_endpoint = 'issues'
 
     def get(self, url, endpoint, issue_id, **kwargs):
-        real_endpoint = "{0}/{1}/{2}/{3}".format(self._api_endpoint, quote_plus(endpoint), self._api_sub_endpoint, issue_id)
+        real_endpoint = "{0}/{1}/{2}/{3}".format(
+            self._api_endpoint, quote_plus(endpoint), self._api_sub_endpoint, issue_id)
         return self._get(url, real_endpoint, token=self.token, headers=self._headers, **kwargs)
 
 
 class GitlabPipelineAPI(GitlabRestClient):
+
     def __init__(self, config):
         super(GitlabPipelineAPI, self).__init__(config=config)
         self._api_endpoint = 'projects'
 
     def get(self, url, endpoint, *args, **kwargs):
-        real_endpoint = "{0}/{1}/pipelines".format(self._api_endpoint, quote_plus(endpoint))
+        real_endpoint = "{0}/{1}/pipelines".format(
+            self._api_endpoint, quote_plus(endpoint))
         return self._get(url, real_endpoint, token=self.token, headers=self._headers, **kwargs)
 
     def post(self, url, project, ref, trigger_token, variables, *args, **kwargs):
-        real_endpoint = "{0}/{1}/trigger/pipeline".format(self._api_endpoint, quote_plus(project))
+        real_endpoint = "{0}/{1}/trigger/pipeline".format(
+            self._api_endpoint, quote_plus(project))
 
         p = {"token": trigger_token,
              "ref": ref}
@@ -108,4 +120,3 @@ class GitlabPipelineAPI(GitlabRestClient):
                           headers=self._headers,
                           params=p,
                           **kwargs)
-

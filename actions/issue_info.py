@@ -2,6 +2,7 @@
 
 from lib.gitlab import GitlabIssuesAPI
 
+
 class GitlabIssue(GitlabIssuesAPI):
 
     def run(self, url, project, issue_iid, token, verify_ssl):
