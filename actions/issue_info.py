@@ -10,3 +10,4 @@ class GitlabIssue(GitlabIssuesAPI):
         self.token = token or self.token
 
         return True, self.get(self.url, project, issue_iid)
+        
