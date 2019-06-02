@@ -1,12 +1,18 @@
-#!/usr/bin/env python
-
 from urllib import quote_plus
-import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from st2common.runners.base_action import Action
 
-requests.packages.urllib3.disable_warnings(
-    InsecureRequestWarning)  # pylint: disable=no-member
+# silence SSL warnings
+try:
+    import requests
+    requests.packages.urllib3.disable_warnings()  # pylint: disable=no-member
+except ImportError:
+    pass
+
+try:
+    import urllib3
+    urllib3.disable_warnings()
+except ImportError:
+    pass
 
 
 def override_token(func):
@@ -34,8 +40,8 @@ class RequestsMethod(object):
 
         if response.status_code:
             return response.json()
-        else:
-            return response.text
+
+        return response.text
 
 
 class GitlabRestClient(Action):
@@ -108,15 +114,15 @@ class GitlabPipelineAPI(GitlabRestClient):
         real_endpoint = "{0}/{1}/trigger/pipeline".format(
             self._api_endpoint, quote_plus(project))
 
-        p = {"token": trigger_token,
-             "ref": ref}
+        params = {"token": trigger_token,
+                  "ref": ref}
         if variables:
-            for k, v in variables.iteritems():
-                p.update({"variables[{}]".format(k): v})
+            for key, val in variables.iteritems():
+                params.update({"variables[{}]".format(key): val})
 
         return self._post(url,
                           real_endpoint,
                           token=self.token,
                           headers=self._headers,
-                          params=p,
+                          params=params,
                           **kwargs)
