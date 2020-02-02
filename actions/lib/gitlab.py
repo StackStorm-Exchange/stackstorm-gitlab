@@ -1,4 +1,3 @@
-from urllib import quote_plus
 from st2common.runners.base_action import Action
 
 # silence SSL warnings
@@ -9,10 +8,11 @@ except ImportError:
     pass
 
 try:
+    from urllib.parse import quote_plus
     import urllib3
     urllib3.disable_warnings()
 except ImportError:
-    pass
+    from urllib import quote_plus
 
 
 def override_token(func):
