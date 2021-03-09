@@ -1,3 +1,7 @@
+## v1.0.1
+
+* Small bug fixes regarding Python 3 support
+
 ## v1.0.0
 
 * Drop Python 2.7 support

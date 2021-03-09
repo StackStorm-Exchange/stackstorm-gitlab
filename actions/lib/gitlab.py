@@ -117,7 +117,7 @@ class GitlabPipelineAPI(GitlabRestClient):
         params = {"token": trigger_token,
                   "ref": ref}
         if variables:
-            for key, val in variables.iteritems():
+            for key, val in variables.items():
                 params.update({"variables[{}]".format(key): val})
 
         return self._post(url,
