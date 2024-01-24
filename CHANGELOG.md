@@ -1,3 +1,8 @@
+## v1.1.0
+
+* Use of `python-gitlab` library
+* New action `epic.create`
+
 ## v1.0.1
 
 * Small bug fixes regarding Python 3 support
