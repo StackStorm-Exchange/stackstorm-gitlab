@@ -12,6 +12,10 @@ verify_ssl: False
 
 ## Actions
 
+### Epics
+
+* `epic.create` - Create new Epic
+
 ### Projects
 
 * `project.info` - Returns project information
@@ -24,4 +28,3 @@ verify_ssl: False
 
 * `pipeline.list` - List all pipelines in a project
 * `pipeline.trigger` - Create a new pipeline
-
