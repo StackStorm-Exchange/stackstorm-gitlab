@@ -1,3 +1,7 @@
+## v1.1.1
+
+* Fix - Remove default group id
+
 ## v1.1.0
 
 * Use of `python-gitlab` library

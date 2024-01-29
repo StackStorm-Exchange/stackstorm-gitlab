@@ -11,7 +11,6 @@ parameters:
   group_id:
     description: "The ID of the group in which to create the epic"
     type: integer
-    default: 117
     required: true
     position: 0
   title:
