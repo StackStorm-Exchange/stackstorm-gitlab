@@ -23,6 +23,7 @@ verify_ssl: False
 ### Issues
 
 * `issue.info` - Returns issue information
+* `issue.create` - Create new Issue
 
 ### Pipelines
 

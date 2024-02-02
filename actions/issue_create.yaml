@@ -1,0 +1,47 @@
+---
+
+name: issue.create
+description: "Create new Issue"
+
+runner_type: python-script
+entry_point: issue_create.py
+
+# Taken from https://docs.gitlab.com/ee/api/issues.html#new-issue
+parameters:
+  project_id:
+    description: "The ID of the project in which to create the issue"
+    type: integer
+    required: true
+    position: 0
+  title:
+    description: "The title of the issue"
+    type: string
+    required: true
+    position: 1
+  description:
+    description: "The description of the issue"
+    type: string
+    position: 2
+  assignee_ids:
+    description: "The comma-separated list of assignee IDs"
+    type: string
+    position: 3
+  labels:
+    description: "The comma-separated list of labels"
+    type: string
+    position: 4
+  epic_id:
+    description: "The ID of the epic to which the issue should be linked"
+    type: integer
+    position: 5
+  due_date:
+    description: "The fixed due date of the issue"
+    type: string
+    position: 6
+  weight:
+    description: "The weight of the issue"
+    type: integer
+    position: 7
+  token:
+    description: "Gitlab token"
+    type: string

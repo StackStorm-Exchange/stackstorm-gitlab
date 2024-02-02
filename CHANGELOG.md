@@ -1,3 +1,7 @@
+## v1.1.2
+
+* New action `issue.create`
+
 ## v1.1.1
 
 * Fix - Remove default group id
