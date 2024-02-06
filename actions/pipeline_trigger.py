@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from lib.gitlab import GitlabPipelineAPI
+from lib.gitlabLib import GitlabPipelineAPI
 
 
 class GitlabPipelineTrigger(GitlabPipelineAPI):

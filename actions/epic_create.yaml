@@ -1,0 +1,39 @@
+---
+
+name: epic.create
+description: "Create new Epic"
+
+runner_type: python-script
+entry_point: epic_create.py
+
+# Taken from https://docs.gitlab.com/ee/api/epics.html#new-epic
+parameters:
+  group_id:
+    description: "The ID of the group in which to create the epic"
+    type: integer
+    required: true
+    position: 0
+  title:
+    description: "The title of the epic"
+    type: string
+    required: true
+    position: 1
+  labels:
+    description: "The comma-separated list of labels"
+    type: string
+    position: 2
+  description:
+    description: "The description of the epic. Limited to 1,048,576 characters."
+    type: string
+    position: 3
+  start_date:
+    description: "The fixed start date of an epic"
+    type: string
+    position: 4
+  due_date:
+    description: "The fixed due date of an epic"
+    type: string
+    position: 5
+  token:
+    description: "Gitlab token"
+    type: string
